@@ -1,7 +1,7 @@
 {
   "name": "vivliostyle-theme-enhanced-report",
   "description": "スライド用テーマ",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "author": "yas-ako https://github.com/yas-ako",
   "main": "theme.css",
   "scripts": {
