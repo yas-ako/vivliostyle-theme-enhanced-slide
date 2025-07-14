@@ -35,8 +35,8 @@
    * Customize styles about footnotes
    * https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#footnotes
    */
-   --vs-footnote--call-content: '[' counter(footnote) ']';
-   --vs-footnote--area-before-margin-inline: 0 80%;
+  --vs-footnote--call-content: '[' counter(footnote) ']';
+  --vs-footnote--area-before-margin-inline: 0 80%;
 
   /*
    * Customize styles about paged media
@@ -57,6 +57,13 @@
    * https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#table-of-contents
    */
   --vs-toc--marker-margin-inline: 8rem;
-}
 
-/* Start writing... 🖋 */
+  --vs-section--root-counter-reset: vs-counter-sections var(--vs-section--root-counter-sections, ) vs-counter-sec-h1 var(--vs-section--root-counter-sec-h1, );
+
+
+  /*========================================
+    スライド用カスタムテーマの設定
+    ========================================*/
+
+  --vs-page--size: 338.67mm 190.5mm;
+}
