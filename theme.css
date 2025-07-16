@@ -1,4 +1,11 @@
 @import url(../../@vivliostyle/theme-base/theme-all.css);
+/* @import url(../../theme-base/theme-basic.css);
+@import url(../../theme-base/css/partial/page.css);
+@import url(../../theme-base/css/partial/utility-classes.css);
+@import url(../../theme-base/css/lib/prism/base.css);
+@import url(../../theme-base/css/lib/prism/theme-prism.css); */
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@300;400;500;700;900&family=Zen+Old+Mincho:wght@400;500;600;700;900&display=swap');
 
@@ -52,6 +59,7 @@
   --vs-toc--marker-margin-inline: 8rem;
 
   --vs-section--root-counter-reset: vs-counter-sections var(--vs-section--root-counter-sections, ) vs-counter-sec-h1 var(--vs-section--root-counter-sec-h1, );
+  /* --vs-section--root-counter-reset: none; */
 
 
   /*========================================
@@ -63,42 +71,150 @@
   --vs-font-size: 29px;
 
 
+  --vs--h1-font-family: 'Zen Kaku Gothic New', serif;
+  --vs--h1-font-size: 3.5em;
+  --vs-section--h1-marker-content: none;
+
   --vs--h2-font-family: 'Zen Kaku Gothic New', serif;
-  --vs--h2-font-size: 3.5em;
-  --vs--h2-break-after: page;
+  --vs--h2-font-size: 2.9em;
+  --vs--h2-line-height: 1.5em;
+  --vs-section--h2-marker-content: counter(vs-counter-doc) ".";
 
 
   --vs--h3-font-family: 'Zen Kaku Gothic New', serif;
   --vs--h3-font-size: 2.5em;
-  --vs--h3-margin-block: 0.2em;
+  --vs--h3-margin-block: 0.0em;
   --vs--h3-line-height: 1;
   --vs-section--h3-marker-content: none;
 }
 
-section:has(h2) {
-  page: chapter-first;
-  justify-content: center;
-  /* display: flex; */
+/*========================================
+  theme-slide を使用
+  ========================================*/
+
+section {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  align-items: var(--vs-theme--section-align-items);
+  justify-content: var(--vs-theme--section-justify-content);
+  width: 100%;
 }
 
-/* section:has(h2)>h2 { */
-/* flex: 1 1 auto; */
-/* display: flex; */
-/* flex-direction: column; */
-/* margin-top: var(--vs-theme--section-heading-margin-top, auto);
-  margin-bottom: var(--vs-theme--section-heading-margin-bottom, auto); */
+section>*:not(:last-child) {
+  margin-block-end: 0;
+}
+
+@media print {
+
+  section:first-child,
+  :not(:is(h1, h2, h3, h4, h5, h6))+section {
+    break-before: page;
+    height: 100vh;
+  }
+}
+
+@media screen {
+
+  section:first-child,
+  :not(:is(h1, h2, h3, h4, h5, h6))+section {
+    padding: 0 max(calc(50vw - var(--vs-theme--max-inline-size-on-screen) * 0.5),
+        var(--vs-spacing-inline-indent));
+  }
+}
+
+p {
+  break-inside: avoid;
+}
+
+section>hr {
+  align-self: stretch;
+}
+
+blockquote::before {
+  color: var(--vs-theme--blockquote-mark-color);
+  content: '❝';
+  float: left;
+  font-size: 250%;
+  margin-left: -0.83em;
+  margin-top: -0.25em;
+}
+
+thead,
+tfoot {
+  background: var(--vs-theme--table-heading-color-bg);
+}
+
+a[href^='#'] {
+  color: var(--vs-theme--page-ref-call-color);
+  --vs--anchor-text-decoration: none;
+}
+
+a[href^='#']::after {
+  content: var(--vs-theme--page-ref-call-content);
+}
+
+@media screen {
+  a[href^='#']::after {
+    content: '(p.XXX)';
+  }
+}
+
+/*========================================
+  h1 (表紙の設定)
+  ========================================*/
+
+section:has(h1) {
+  align-items: var(--vs-theme--slide-cover-align-items, center);
+  justify-content: var(--vs-theme--slide-cover-justify-content, center);
+  page: slide-cover;
+  color: var(--vs-theme--slide-cover-font-color, #ffffff);
+}
+
+@page slide-cover {
+  --vs-page--mbox-content-top-left: none;
+  --vs-page--mbox-content-top-right: none;
+  background-color: var(--vs-theme--slide-cover-bg-color, #1c3177);
+
+  /* 参考：https://github.com/vivliostyle/themes/pull/133/files#diff-8276dd216bbd5cad79c52183c86a497b6fc4f8e8c8119d44be5902fe8eec6af3R477 */
+  --vs-page--doc-counter-increment: vs-counter-doc 0;
+}
+
+
+/*========================================
+  h2 (chapter coverの設定)
+  ========================================*/
+
+/* h2 の位置の設定 */
+section:has(h2) {
+  align-items: var(--vs-theme--chapter-cover-align-items, left);
+  justify-content: var(--vs-theme--chapter-cover-justify-content, center);
+  page: chapter-cover;
+}
+
+/* h2 のフォントの設定 */
+h2 {
+  color: #1c3177;
+  border-bottom: #7f96c2 10px solid;
+}
+
+
+@page chapter-cover {
+  --vs-page--mbox-content-top-left: none;
+  --vs-page--mbox-content-top-right: none;
+}
+
+/*========================================
+  h3 スライドタイトルの設定
+  ========================================*/
+h3 {
+  padding-block-start: var(--vs-theme--h3-padding-block-start, 0.4em);
+}
+
+/* :root { */
+/* --vs-document-first-page-counter-increment: vs-counter-sec-h2; */
+/* counter-increment: vs-counter-sec-h2; */
 /* } */
 
-@page chapter-first {
-  /* height: 100vh; */
-}
-
-section:first-child,
-:not(:is(h1, h2, h3, h4, h5, h6))+section {
-  break-before: page;
-  height: 100vh;
-}
+/* @page :nth(1) {
+  counter-increment: vs-counter-sec-h2;
+} */
