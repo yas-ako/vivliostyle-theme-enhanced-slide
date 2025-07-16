@@ -1,22 +1,15 @@
-@import url(../@vivliostyle/theme-base/theme-all.css);
+@import url(../../@vivliostyle/theme-base/theme-all.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@300;400;500;700;900&family=Zen+Old+Mincho:wght@400;500;600;700;900&display=swap');
 
 /*
  * Import extra modules
  * https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#prism-code-highlighting
  */
-@import url(../@vivliostyle/theme-base/css/lib/prism/base.css);
-@import url(../@vivliostyle/theme-base/css/lib/prism/theme-okaidia.css);
+/* @import url(../@vivliostyle/theme-base/css/lib/prism/base.css); */
+/* @import url(../@vivliostyle/theme-base/css/lib/prism/theme-okaidia.css); */
 
 :root {
-  /*
-   * Basic customization of Vivliostyle Theme
-   * https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#basic
-   */
-  --vs-font-family: 'Times New Roman', serif;
-  --vs-font-size: 12px;
-  --vs--heading-line-height: 1.3;
-  --vs--h1-font-size: 2.5em;
-
   /*
    * Customize styles about cross-reference of figure, table and citation
    * https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#cross-reference
@@ -42,7 +35,7 @@
    * Customize styles about paged media
    * https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#page-layout
    */
-  --vs-page--mbox-content-bottom-center: counter(page);
+  --vs-page--mbox-content-top-right: counter(page);
   --vs-page--mbox-content-top-left: env(doc-title);
 
   /*
@@ -66,4 +59,46 @@
     ========================================*/
 
   --vs-page--size: 338.67mm 190.5mm;
+  --vs-font-family: 'Zen Maru Gothic', sans-serif;
+  --vs-font-size: 29px;
+
+
+  --vs--h2-font-family: 'Zen Kaku Gothic New', serif;
+  --vs--h2-font-size: 3.5em;
+  --vs--h2-break-after: page;
+
+
+  --vs--h3-font-family: 'Zen Kaku Gothic New', serif;
+  --vs--h3-font-size: 2.5em;
+  --vs--h3-margin-block: 0.2em;
+  --vs--h3-line-height: 1;
+  --vs-section--h3-marker-content: none;
+}
+
+section:has(h2) {
+  page: chapter-first;
+  justify-content: center;
+  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+/* section:has(h2)>h2 { */
+/* flex: 1 1 auto; */
+/* display: flex; */
+/* flex-direction: column; */
+/* margin-top: var(--vs-theme--section-heading-margin-top, auto);
+  margin-bottom: var(--vs-theme--section-heading-margin-bottom, auto); */
+/* } */
+
+@page chapter-first {
+  /* height: 100vh; */
+}
+
+section:first-child,
+:not(:is(h1, h2, h3, h4, h5, h6))+section {
+  break-before: page;
+  height: 100vh;
 }

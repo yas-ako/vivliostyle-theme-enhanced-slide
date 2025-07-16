@@ -1,8 +1,8 @@
 module.exports = {
-  language: 'en',
+  language: 'ja',
   theme: ['node_modules/@vivliostyle/theme-base', '.'],
   entry: [
-    'example/title.md',
+    'example/_title.md',
     'example/chapter1.md'
   ],
   output: [
