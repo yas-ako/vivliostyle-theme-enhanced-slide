@@ -42,6 +42,7 @@
    * Customize styles about paged media
    * https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#page-layout
    */
+  --vs-page--mbox-content-top-right-corner: counter(page);
   --vs-page--mbox-content-top-right: counter(page);
   --vs-page--mbox-content-top-left: env(doc-title);
 
@@ -89,16 +90,172 @@
 }
 
 /*========================================
-  theme-slide を使用
+  画像の挿入
   ========================================*/
 
+
+/*----------------------------------------
+  1カラムスライド
+  ----------------------------------------*/
 section {
   display: flex;
   flex-direction: column;
-  align-items: var(--vs-theme--section-align-items);
+}
+
+/*----------------------------------------
+  2カラムスライド
+  ----------------------------------------*/
+section:has(h3.columns-2) {
+  display: grid;
+  column-gap: 2em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  align-items: var(--vs-theme--section-align-items, start);
   justify-content: var(--vs-theme--section-justify-content);
   width: 100%;
 }
+
+section:has(h3.columns-2) p:has(img) {
+  height: 100%;
+  margin: 0;
+}
+
+
+
+/*----------------------------------------
+  3カラムスライド
+  ----------------------------------------*/
+section:has(h3.columns-3) {
+  display: grid;
+  column-gap: 2em;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr;
+  align-items: var(--vs-theme--section-align-items, start);
+  justify-content: var(--vs-theme--section-justify-content, start);
+  width: 100%;
+}
+
+/*----------------------------------------
+  カラム内にある画像
+  ----------------------------------------*/
+section:has(h3.columns-3)>p:has(img),
+section:has(h3.columns-2)>p:has(img) {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section:has(h3.columns-3)>p:has(img)>img,
+section:has(h3.columns-2)>p:has(img)>img {
+  height: 80%;
+  margin: 0;
+  /* max-width: ; */
+  object-fit: contain;
+}
+
+/*----------------------------------------
+  左に画像を挿入するスライド
+  ----------------------------------------*/
+
+/* 画像のみ */
+section:has(h3.image-left) {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  justify-content: start;
+}
+
+section:has(h3.image-left)>p:has(img) {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+section:has(h3.image-left)>p>img {
+  height: 80%;
+  margin: 0 2em;
+  /* max-width: ; */
+  object-fit: contain;
+}
+
+/* キャプションあり */
+/* 細かい調整ができていない */
+section:has(h3.image-left)>figure {
+  height: 100%;
+  margin: 0 2em 0 0;
+  display: flex;
+  align-items: center;
+}
+
+section:has(h3.image-left)>figure>img {
+  height: 70%;
+  margin: 0;
+  /* max-width: ; */
+  object-fit: contain;
+}
+
+section:has(h3.image-left)>figure>img>figcaption {
+  height: 10%;
+  margin: 0;
+  padding: 0.5em;
+}
+
+/*----------------------------------------
+    右に画像を挿入するスライド
+  ----------------------------------------*/
+
+/* 画像のみ */
+section:has(h3.image-right) {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  justify-content: start;
+}
+
+section:has(h3.image-right)>p:has(img) {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: end;
+}
+
+section:has(h3.image-right)>p>img {
+  height: 90%;
+  margin: 0 2em 0 0;
+  max-width: 40vw;
+  object-fit: contain;
+}
+
+/* キャプションあり */
+/* 細かい調整ができていない */
+section:has(h3.image-right)>figure {
+  height: 100%;
+  margin: 0 2em 0 0;
+  display: flex;
+  align-items: center;
+}
+
+section:has(h3.image-right)>figure>img {
+  height: 70%;
+  margin: 0;
+  max-width: 45vw;
+  object-fit: contain;
+}
+
+section:has(h3.image-right)>figure>img>figcaption {
+  height: 10%;
+  margin: 0;
+  padding: 0.5em;
+}
+
+/*========================================
+  theme-slide を使用
+  ========================================*/
 
 section>*:not(:last-child) {
   margin-block-end: 0;
@@ -176,7 +333,16 @@ section:has(h1) {
   background-color: var(--vs-theme--slide-cover-bg-color, #1c3177);
 
   /* 参考：https://github.com/vivliostyle/themes/pull/133/files#diff-8276dd216bbd5cad79c52183c86a497b6fc4f8e8c8119d44be5902fe8eec6af3R477 */
+  /* slide-cover というスライドのみ */
   --vs-page--doc-counter-increment: vs-counter-doc 0;
+}
+
+/* 著者名 */
+h1+ul>li {
+  list-style: none;
+  font-size: var(--vs-theme--author-font-size, 2em);
+  font-family: var(--vs-theme--author-font-family, 'Zen Maru Gothic', sans-serif);
+  padding-left: none;
 }
 
 
@@ -208,6 +374,8 @@ h2 {
   ========================================*/
 h3 {
   padding-block-start: var(--vs-theme--h3-padding-block-start, 0.4em);
+  grid-column-start: 1;
+  grid-column-end: -1;
 }
 
 /* :root { */
