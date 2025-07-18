@@ -325,6 +325,12 @@ section:has(h1) {
   justify-content: var(--vs-theme--slide-cover-justify-content, center);
   page: slide-cover;
   color: var(--vs-theme--slide-cover-font-color, #ffffff);
+  text-align: center;
+}
+
+section:has(h1) ul {
+  font-size: var(--vs-theme--slide-cover-author-font-size, 0.8em);
+  padding: 0;
 }
 
 @page slide-cover {
