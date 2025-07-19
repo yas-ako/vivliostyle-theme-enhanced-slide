@@ -2,8 +2,8 @@
 /* @import url(../../theme-base/theme-basic.css); */
 /* @import url(../../theme-base/css/partial/page.css); */
 /* @import url(../../theme-base/css/partial/utility-classes.css); */
-@import url(../../theme-base/css/lib/prism/base.css);
-@import url(../../theme-base/css/lib/prism/theme-prism.css);
+@import url(../../@vivliostyle/theme-base/css/lib/prism/base.css);
+@import url(../../@vivliostyle/theme-base/css/lib/prism/theme-prism.css);
 
 
 
@@ -129,7 +129,7 @@ section:has(h3.columns-3) {
 }
 
 /*----------------------------------------
-  カラム内にある画像・数式
+  カラム内にある画像・数式・コードブロック
   ----------------------------------------*/
 
 section:has(h3.columns-2) p:has(>span.math.display),
@@ -150,6 +150,10 @@ section:has(h3.columns-2)>p:has(img)>img {
   margin: 0;
   /* max-width: ; */
   object-fit: contain;
+}
+
+section:has(h3.columns-2) pre {
+  margin-block: auto;
 }
 
 /*----------------------------------------

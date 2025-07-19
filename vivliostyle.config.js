@@ -7,7 +7,8 @@ module.exports = {
     'example/_title.md',
     'example/chapter1.md',
     'example/chapter2.md',
-    'example/chapter3.md'
+    'example/chapter3.md',
+    'example/chapter4.md'
   ],
   output: [
     'book.pdf',
