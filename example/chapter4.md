@@ -30,3 +30,12 @@ int main() {
   return 0;
 }
 ```
+
+
+### footnote を実現する方法は分かっていません
+
+あいうえお <span class="footnote">footnote text</span> かきくけこ
+
+```
+あいうえお <span class="footnote">footnote text</span> かきくけこ
+```
