@@ -1,9 +1,9 @@
 @import url(../../@vivliostyle/theme-base/theme-all.css);
-/* @import url(../../theme-base/theme-basic.css);
-@import url(../../theme-base/css/partial/page.css);
-@import url(../../theme-base/css/partial/utility-classes.css);
+/* @import url(../../theme-base/theme-basic.css); */
+/* @import url(../../theme-base/css/partial/page.css); */
+/* @import url(../../theme-base/css/partial/utility-classes.css); */
 @import url(../../theme-base/css/lib/prism/base.css);
-@import url(../../theme-base/css/lib/prism/theme-prism.css); */
+@import url(../../theme-base/css/lib/prism/theme-prism.css);
 
 
 
@@ -43,8 +43,8 @@
    * https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#page-layout
    */
   --vs-page--mbox-content-top-right-corner: counter(page);
-  --vs-page--mbox-content-top-right: counter(page);
-  --vs-page--mbox-content-top-left: env(doc-title);
+  /* --vs-page--mbox-content-top-right: counter(page); */
+  --vs-page--mbox-content-bottom-right: env(doc-title);
 
   /*
    * Customize styles about heading counters and section reference
@@ -60,7 +60,6 @@
   --vs-toc--marker-margin-inline: 8rem;
 
   --vs-section--root-counter-reset: vs-counter-sections var(--vs-section--root-counter-sections, ) vs-counter-sec-h1 var(--vs-section--root-counter-sec-h1, );
-  /* --vs-section--root-counter-reset: none; */
 
 
   /*========================================
@@ -69,7 +68,7 @@
 
   --vs-page--size: 338.67mm 190.5mm;
   --vs-font-family: 'Zen Maru Gothic', sans-serif;
-  --vs-font-size: 29px;
+  --vs-font-size: 32px;
 
 
   --vs--h1-font-family: 'Zen Kaku Gothic New', serif;
@@ -87,12 +86,13 @@
   --vs--h3-margin-block: 0.0em;
   --vs--h3-line-height: 1;
   --vs-section--h3-marker-content: none;
+
+  --vs-theme--page-ref-call-color: #0d9d5a;
 }
 
 /*========================================
   画像の挿入
   ========================================*/
-
 
 /*----------------------------------------
   1カラムスライド
@@ -119,8 +119,6 @@ section:has(h3.columns-2) p:has(img) {
   height: 100%;
   margin: 0;
 }
-
-
 
 /*----------------------------------------
   3カラムスライド
@@ -150,6 +148,7 @@ section:has(h3.columns-2)>p:has(img) {
 section:has(h3.columns-3)>p:has(img)>img,
 section:has(h3.columns-2)>p:has(img)>img {
   height: 80%;
+  max-height: calc((100vh - 3em) * 0.8);
   margin: 0;
   /* max-width: ; */
   object-fit: contain;
@@ -177,6 +176,7 @@ section:has(h3.image-left)>p:has(img) {
 
 section:has(h3.image-left)>p>img {
   height: 80%;
+  max-height: calc((100vh - 3em) * 0.8);
   margin: 0 2em;
   /* max-width: ; */
   object-fit: contain;
@@ -221,12 +221,13 @@ section:has(h3.image-right)>p:has(img) {
   height: 100%;
   margin: 0;
   display: flex;
-  align-items: end;
+  align-items: center;
 }
 
 section:has(h3.image-right)>p>img {
   height: 90%;
-  margin: 0 2em 0 0;
+  max-height: calc((100vh - 3em) * 0.8);
+  margin: 0 2em;
   max-width: 40vw;
   object-fit: contain;
 }
@@ -242,6 +243,7 @@ section:has(h3.image-right)>figure {
 
 section:has(h3.image-right)>figure>img {
   height: 70%;
+  max-height: calc((100vh - 3em) * 0.8);
   margin: 0;
   max-width: 45vw;
   object-fit: contain;
@@ -334,13 +336,15 @@ section:has(h1) ul {
 }
 
 @page slide-cover {
-  --vs-page--mbox-content-top-left: none;
-  --vs-page--mbox-content-top-right: none;
+  --vs-page--mbox-content-bottom-right: none;
+  --vs-page--mbox-content-top-right-corner: none;
   background-color: var(--vs-theme--slide-cover-bg-color, #1c3177);
 
+  /* slide-cover という名前のついたセクションで、vs-counter-doc を0にリセットする */
   /* 参考：https://github.com/vivliostyle/themes/pull/133/files#diff-8276dd216bbd5cad79c52183c86a497b6fc4f8e8c8119d44be5902fe8eec6af3R477 */
-  /* slide-cover というスライドのみ */
   --vs-page--doc-counter-increment: vs-counter-doc 0;
+
+  /* 現在のchapterのタイトルを表示しない */
 }
 
 /* 著者名 */
@@ -371,8 +375,8 @@ h2 {
 
 
 @page chapter-cover {
-  --vs-page--mbox-content-top-left: none;
-  --vs-page--mbox-content-top-right: none;
+  --vs-page--mbox-content-bottom-right: none;
+  --vs-page--mbox-content-top-right-corner: none;
 }
 
 /*========================================
@@ -392,3 +396,82 @@ h3 {
 /* @page :nth(1) {
   counter-increment: vs-counter-sec-h2;
 } */
+
+@page {
+  @top-right-corner {
+    text-align: center;
+  }
+
+  @bottom-right {
+    text-align: end;
+  }
+}
+
+/*========================================
+  注釈
+  ========================================*/
+
+/* 脚注の自動生成された脚注表記を非表示にする */
+/* 脚注番号は、脚注の内容の前に付与される。 */
+@media print {
+
+  /* URL に対して自動生成された脚注表記を非表示にする */
+  :not(.footnote)>a[href^="http"]::before {
+    display: none;
+  }
+
+  :not(.footnote)>a[href^="http"]::after {
+    /* URL の後ろに付与された脚注番号を非表示にする */
+    display: none;
+  }
+}
+
+/*========================================
+  コードブロック
+  ========================================*/
+:root {
+  --vs-prism--inline-code-padding: 0.3em;
+}
+
+/* コードブロックの見出し */
+figure[class*="language-"]>figcaption {
+  font-size: 110%;
+  line-height: 1.4em;
+  border: #888 1px solid;
+  color: #fff;
+  background-color: #888;
+  /* border-bottom: none; */
+  text-align: left;
+  margin: 0 auto 0 0;
+  /* border-radius: var(--vs-prism--block-code-border-radius) var(--vs-prism--block-code-border-radius) 0 0; */
+  padding: 0.3em 1.5em 0.1em;
+  font-family: var(--vs--monospace-font-family);
+}
+
+/* コードブロック */
+pre[class*="language-"] {
+  padding-block: 0;
+  padding-inline-start: 0.3em;
+  background-color: #fff;
+  background-image: linear-gradient(#efefef6e 50%, #fff 50%);
+  line-height: 1.5em;
+  background-size: 3em 3em;
+  background-origin: content-box;
+  background-attachment: local;
+  width: 100%;
+  border: 1px solid #888;
+  border-radius: 0;
+}
+
+/* 見出し付きのコードブロック */
+figcaption+pre[class*="language-"] {
+  /* border-radius: 0 var(--vs-prism--block-code-border-radius) var(--vs-prism--block-code-border-radius) var(--vs-prism--block-code-border-radius); */
+  margin-block: 0;
+}
+
+/* インラインコード */
+:not(pre)>code {
+  border: 1px solid #888;
+  margin-inline: 0.2em;
+  padding-block: 0;
+}
