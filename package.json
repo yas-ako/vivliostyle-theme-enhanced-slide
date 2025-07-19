@@ -1,5 +1,5 @@
 {
-  "name": "vivliostyle-theme-enhanced-report",
+  "name": "@yas-ako/vivliostyle-theme-enhanced-slide",
   "description": "スライド用テーマ",
   "version": "0.0.1",
   "author": "yas-ako https://github.com/yas-ako",
@@ -10,14 +10,14 @@
     "validate": "vivliostyle-theme-scripts validate"
   },
   "dependencies": {
-    "@vivliostyle/theme-base": "latest"
+    "@vivliostyle/theme-base": "^2.0.0"
   },
   "devDependencies": {
-    "@vivliostyle/cli": "^7.2.3",
+    "@vivliostyle/cli": "^9.4.0",
     "vivliostyle-theme-scripts": "^0.3.5"
   },
   "peerDependencies": {
-    "@vivliostyle/cli": ">=7"
+    "@vivliostyle/cli": ">=9"
   },
   "peerDependenciesMeta": {
     "@vivliostyle/cli": {
@@ -36,7 +36,7 @@
   "license": "MIT",
   "vivliostyle": {
     "theme": {
-      "name": "Vivliostyle Theme Enhanced Report",
+      "name": "Vivliostyle Theme Enhanced Slide",
       "author": "yas-ako https://github.com/yas-ako",
       "style": "theme.css",
       "category": "misc",

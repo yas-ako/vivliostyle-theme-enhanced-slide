@@ -1,13 +1,16 @@
+// @ts-check
+/** @type {import('@vivliostyle/cli').VivliostyleConfigSchema} */
 module.exports = {
-  language: 'en',
+  language: 'ja',
   theme: ['node_modules/@vivliostyle/theme-base', '.'],
-  entry: ['example/default.md'],
-  workspaceDir: '.vivliostyle',
+  entry: [
+    'example/_title.md',
+    'example/chapter1.md',
+    'example/chapter2.md',
+    'example/chapter3.md',
+    'example/chapter4.md'
+  ],
   output: [
     'book.pdf',
-    {
-      path: './book',
-      format: 'webpub',
-    },
   ],
 };
