@@ -115,11 +115,6 @@ section:has(h3.columns-2) {
   width: 100%;
 }
 
-section:has(h3.columns-2) p:has(img) {
-  height: 100%;
-  margin: 0;
-}
-
 /*----------------------------------------
   3カラムスライド
   ----------------------------------------*/
@@ -134,8 +129,11 @@ section:has(h3.columns-3) {
 }
 
 /*----------------------------------------
-  カラム内にある画像
+  カラム内にある画像・数式
   ----------------------------------------*/
+
+section:has(h3.columns-2) p:has(>span.math.display),
+section:has(h3.columns-3) p:has(>span.math.display),
 section:has(h3.columns-3)>p:has(img),
 section:has(h3.columns-2)>p:has(img) {
   height: 100%;
