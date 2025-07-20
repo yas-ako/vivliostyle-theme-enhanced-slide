@@ -1,8 +1,8 @@
-# Vivliostyle Theme Enhanced Report
+# Vivliostyle Theme Enhanced Slide
 
-[![npm: version](https://flat.badgen.net/npm/v/vivliostyle-theme-enhanced-report)](https://npmjs.com/package/vivliostyle-theme-enhanced-report)
-[![npm: total downloads](https://flat.badgen.net/npm/dt/vivliostyle-theme-enhanced-report)](https://npmjs.com/package/vivliostyle-theme-enhanced-report)
-![npm: license](https://flat.badgen.net/npm/license/vivliostyle-theme-enhanced-report)
+[![npm: version](https://flat.badgen.net/npm/v/@yas-ako/vivliostyle-theme-enhanced-slide)](https://npmjs.com/package/vivliostyle-theme-enhanced-slide)
+[![npm: total downloads](https://flat.badgen.net/npm/dt/@yas-ako/vivliostyle-theme-enhanced-slide)](https://npmjs.com/package/vivliostyle-theme-enhanced-slide)
+![npm: license](https://flat.badgen.net/npm/license/@yas-ako/vivliostyle-theme-enhanced-slide)
 
 スライド用テーマ
 
@@ -21,8 +21,8 @@ If you want to add your CSS:
 ```js
 module.exports = {
   theme: [
-    'vivliostyle-theme-enhanced-report',
-    // add your CSS 
+    '@yas-ako/vivliostyle-theme-enhanced-slide',
+    // add your CSS
   ],
 };
 ```

@@ -2,6 +2,10 @@
 /* @import url(../../theme-base/theme-basic.css); */
 /* @import url(../../theme-base/css/partial/page.css); */
 /* @import url(../../theme-base/css/partial/utility-classes.css); */
+
+/* 公式テーマを参照するためには、2階層戻る必要がある */
+/* このテーマが /@yas-ako/というフォルダの中にあるため */
+
 @import url(../../@vivliostyle/theme-base/css/lib/prism/base.css);
 @import url(../../@vivliostyle/theme-base/css/lib/prism/theme-prism.css);
 
