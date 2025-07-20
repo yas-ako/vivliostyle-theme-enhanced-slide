@@ -88,6 +88,9 @@
   --vs-section--h3-marker-content: none;
 
   --vs-theme--page-ref-call-color: #0d9d5a;
+
+  --vs-footnote--area-margin-block: 0;
+  --vs-footnote--area-before-margin-block: 0;
 }
 
 /*========================================
@@ -98,7 +101,7 @@
   1カラムスライド
   ----------------------------------------*/
 section {
-  display: flex;
+  /* display: grid; */
   flex-direction: column;
 }
 
@@ -267,6 +270,7 @@ section>*:not(:last-child) {
 
 @media print {
 
+  /* section:first-child { */
   section:first-child,
   :not(:is(h1, h2, h3, h4, h5, h6))+section {
     break-before: page;
@@ -325,6 +329,7 @@ a[href^='#']::after {
   ========================================*/
 
 section:has(h1) {
+  display: flex;
   align-items: var(--vs-theme--slide-cover-align-items, center);
   justify-content: var(--vs-theme--slide-cover-justify-content, center);
   page: slide-cover;
@@ -364,6 +369,7 @@ h1+ul>li {
 
 /* h2 の位置の設定 */
 section:has(h2) {
+  display: flex;
   align-items: var(--vs-theme--chapter-cover-align-items, left);
   justify-content: var(--vs-theme--chapter-cover-justify-content, center);
   page: chapter-cover;

@@ -32,10 +32,28 @@ int main() {
 ```
 
 
-### footnote を実現する方法は分かっていません
+### footnote
 
-あいうえお <span class="footnote">footnote text</span> かきくけこ
+あいうえお <span role="doc-footnote">footnote text</span> あああ
 
-```
-あいうえお <span class="footnote">footnote text</span> かきくけこ
-```
+あいうえお
+
+あいうえお
+
+あおいうえお
+
+
+
+
+###
+
+### あいうえお
+
+あいうえお
+あいうえお
+
+あいうえおあいうえお
+
+あいうえお
+
+あいうえお
